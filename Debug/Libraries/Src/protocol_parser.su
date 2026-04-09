@@ -1,0 +1,16 @@
+../Libraries/Src/protocol_parser.c:105:9:getFSMProtocolState	4	static
+../Libraries/Src/protocol_parser.c:110:6:setFSMProtocolState	16	static
+../Libraries/Src/protocol_parser.c:114:6:setLastFSMProtocolState	16	static
+../Libraries/Src/protocol_parser.c:121:6:updateNumAvailableMeasData	4	static
+../Libraries/Src/protocol_parser.c:202:6:fillDataFrame	16	static
+../Libraries/Src/protocol_parser.c:234:6:fillDataField	16	static
+../Libraries/Src/protocol_parser.c:327:6:fillResponseFrame	24	static
+../Libraries/Src/protocol_parser.c:364:6:sendPreviousResponse	8	static
+../Libraries/Src/protocol_parser.c:377:6:updateSavedResponse	24	static
+../Libraries/Src/protocol_parser.c:401:6:parserFSM	8	static
+../Libraries/Src/protocol_parser.c:602:6:checkCRC32	24	static
+../Libraries/Src/protocol_parser.c:619:10:calculateCRC32	24	static
+../Libraries/Src/protocol_parser.c:627:6:sensorInit	8	static
+../Libraries/Src/protocol_parser.c:653:6:sendInitCTRL	4	static
+../Libraries/Src/protocol_parser.c:658:6:sendRxCompleteCTRL	4	static
+../Libraries/Src/protocol_parser.c:664:6:resetFSMProtocol	8	static
