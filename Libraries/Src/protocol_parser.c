@@ -13,8 +13,6 @@
 #include "sensor_utils.h"
 #include "Common.h"
 
-#define LIMIT_FLASH_PAGE_NUM 65536
-
 //#define TEST_VER
 
 extern w25_info_t  w25_info;
@@ -28,6 +26,7 @@ uint16_t measurement_state = STATE_NOT_READY;		// статус готовнос�
 uint8_t FSM_state, FSM_last_state;					// текущее состояние FSM
 uint8_t measurement_bytes_num = 0;					// число фактически готовых байт измерения
 bool reset_ready = 0;
+uint32_t LIMIT_FLASH_PAGE_NUM;
 
 #ifdef MULTICHANNEL_VERSION
 	struct {
@@ -132,7 +131,7 @@ void updateNumAvailableMeasData() {
 	// проверка на случай, если чтение не было выполнено ни разу
 	if (read.last_page_num == -1) {
 		if ((read.last_page_num + 1) < page_ptr) {
-			read.num_ready_bytes = 252;
+			read.num_ready_bytes = 254;
 		} else {
 			read.num_ready_bytes = 0;
 		}
@@ -143,12 +142,12 @@ void updateNumAvailableMeasData() {
 	 */
 
 	if(page_ptr < read.last_page_num && write_cycle_closed) {
-		read.num_ready_bytes = 252;
+		read.num_ready_bytes = 254;
 		return;
 	}
 
 	if (read.last_page_num < (page_ptr - 1)) {
-		read.num_ready_bytes = 252;
+		read.num_ready_bytes = 254;
 		return;
 	} else {
 		read.num_ready_bytes = 0;
@@ -212,8 +211,6 @@ void fillDataFrame() {
 	response[258] = 0xFF;
 	response[259] = 0x0B;
 
-	response[257] = FSM_state;
-
 	// формирование CRC для кадра в порядке MSB
 	uint32_t crc = calculateCRC32(response,FRAME_LEN-4);
 	response[260] = (crc >> 24) & 0xFF;
@@ -253,18 +250,19 @@ void fillDataField() {
 		W25_Read_Page(data_buf, read.last_page_num, 0, w25_info.PageSize);
 	}
 
-	// заполнение поля данных значениями измерения исключая последние неиспользуемые байты [252..256]
-	for (uint16_t k = 3, i = 0; i < 252; i++, k++) {
+	// заполнение поля данных значениями измерения исключая последний неиспользуемый байт
+	for (uint16_t k = 3, i = 0; i < 254; i++, k++) {
 		response[k] = data_buf[i];
 	}
 
 	// сброс указателя страниц в начальное значение при достижении последней страницы флеш-памяти
-	if (read.last_page_num == LIMIT_FLASH_PAGE_NUM - 2) {
+	if (read.last_page_num == LIMIT_FLASH_PAGE_NUM - 1) {
 		read.last_page_num = -1;
 		// сброс признака того, что указатель записи записывает данные по следующему кругу
 		write_cycle_closed = 0;
 		// установка признака чтения конца флеш-памяти
 		reach_end_of_flash = 1;
+		page_ptr = 0;
 	}
 
 }
@@ -648,6 +646,8 @@ void sensorInit() {
 	sendInitCTRL();
 	// установка состояния датчика "датчик подключен"
 	setFSMProtocolState(CONNECTED_STATE);
+	// задание числа страниц флеш-памяти
+	LIMIT_FLASH_PAGE_NUM = w25_info.PageCount;
 }
 /* Формирует сигнал CTRL для уведомления мастера о подключении датчика */
 void sendInitCTRL() {

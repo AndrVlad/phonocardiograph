@@ -66,6 +66,7 @@ uint8_t res_buf[256] = {0};
 uint8_t data_buf[256];
 bool write_cycle_closed = 0;
 bool reach_end_of_flash = 0;
+volatile uint16_t ADC_data_safe[10];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -173,6 +174,7 @@ int main(void)
 	          HAL_UART_Transmit(&huart1, data_buf, 256, 100);
 	        }
 	      }
+	    }
 
 	  //ADC_conv done
    if ((need_save) && (new_conv == 1)) //measure ongoing and new conversion recieved from ADC
@@ -200,19 +202,41 @@ int main(void)
 	   {
 		 if (page_ptr < w25_info.PageCount) //flash mem isn't full
 		 {
-		   W25_Write_Page(res_buf, page_ptr, 0, 256); //save 256 bytes to flash
-		   buf_ptr = 0;
-		   page_ptr++;
+			 W25_Write_Page(res_buf, page_ptr, 0, 256); //save 256 bytes to flash
+			 buf_ptr = 0;
+			 page_ptr++;
 		 }
 		 else
 		 {
-		   dt1[2] = 0x31; //mem is full
+			 write_cycle_closed = 1;
+			 need_save = 0;
+			 dt1[2] = 0x31; //mem is full
 		 }
 	   }
 	 }
 
    }
-	    }
+
+	// проверка на то, что флеш-память была считана до конца и был отправлен последний кадр данных
+	if (reach_end_of_flash && !response_ready) {
+		// сброс признака чтения конца флеш-памяти
+		reach_end_of_flash = 0;
+
+		// сохранение последнего внутреннего состояния датчика
+		setLastFSMProtocolState(getFSMProtocolState());
+		// переход в состояние сброса флеш-памяти
+		setFSMProtocolState(RESET_FLASH_STATE);
+
+		// сброс указателя номера записываемой страницы флеш
+		page_ptr = 0;
+
+		// очистка флеш-памяти
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+		W25_Erase_Chip();
+
+		// установка признака окончания стирания флеш-памяти (флаг проверяется в состоянии RESET_FLASH_STATE)
+		reset_ready = 1;
+	}
 
     /* USER CODE END WHILE */
 

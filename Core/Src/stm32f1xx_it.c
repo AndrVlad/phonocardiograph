@@ -43,6 +43,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 volatile uint16_t ADC_data = 0;
+volatile uint8_t i = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -214,6 +215,12 @@ void ADC1_2_IRQHandler(void)
   if (need_save)
   {
 	new_conv = 1; //set flag for new conversion
+  }
+
+  if (!need_selfcheck) {
+	  i = i % 10;
+	  ADC_data_safe[i] = ADC_data;
+	  i++;
   }
   /* USER CODE END ADC1_2_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc1);

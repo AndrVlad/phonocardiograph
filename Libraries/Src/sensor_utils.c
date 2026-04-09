@@ -26,7 +26,28 @@ bool sensorSelfCheck() {
 	return true;
 #endif
 
+	// устанавливаем блокировку от перезаписи последнего полученного значения АЦП
+	need_selfcheck = 1;
 
+	uint8_t ovflw_ADC_level_cnt, low_ADC_level_cnt = 0; // счетчики недопустимых значений АЦП
+
+	// проверка на работоспособность АЦП
+	for (uint8_t i = 0; i < 10; i++) { // анализ полученных последних значений АЦП
+		if (ADC_data_safe[i] == 4095) {
+			ovflw_ADC_level_cnt++;
+		}
+		if (ADC_data_safe[i] == 0) {
+			low_ADC_level_cnt++;
+		}
+	}
+
+	// проверка счетчиков недопустимых значений
+	if (low_ADC_level_cnt == 10 || ovflw_ADC_level_cnt == 10) { // если последние значения АЦП - нули или максимум
+		need_selfcheck = 0;
+		return false;
+	}
+
+	need_selfcheck = 0;
 	return true;
 }
 
