@@ -1096,9 +1096,9 @@ static void MX_TIM3_Init(void)
  800070c:	4b1a      	ldr	r3, [pc, #104]	; (8000778 <MX_TIM3_Init+0x94>)
  800070e:	2200      	movs	r2, #0
  8000710:	609a      	str	r2, [r3, #8]
-  htim3.Init.Period = 3999;
+  htim3.Init.Period = 500;
  8000712:	4b19      	ldr	r3, [pc, #100]	; (8000778 <MX_TIM3_Init+0x94>)
- 8000714:	f640 729f 	movw	r2, #3999	; 0xf9f
+ 8000714:	f44f 72fa 	mov.w	r2, #500	; 0x1f4
  8000718:	60da      	str	r2, [r3, #12]
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  800071a:	4b17      	ldr	r3, [pc, #92]	; (8000778 <MX_TIM3_Init+0x94>)
@@ -1355,9 +1355,9 @@ static void MX_GPIO_Init(void)
  8000892:	f001 fd59 	bl	8002348 <HAL_GPIO_Init>
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
  8000896:	2200      	movs	r2, #0
- 8000898:	2100      	movs	r1, #0
+ 8000898:	2101      	movs	r1, #1
  800089a:	2028      	movs	r0, #40	; 0x28
  800089c:	f001 fc5f 	bl	800215e <HAL_NVIC_SetPriority>
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
@@ -1537,9 +1537,9 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
  8000990:	f001 fcda 	bl	8002348 <HAL_GPIO_Init>
 
     /* ADC1 interrupt Init */
-    HAL_NVIC_SetPriority(ADC1_2_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(ADC1_2_IRQn, 2, 0);
  8000994:	2200      	movs	r2, #0
- 8000996:	2100      	movs	r1, #0
+ 8000996:	2102      	movs	r1, #2
  8000998:	2012      	movs	r0, #18
  800099a:	f001 fbe0 	bl	800215e <HAL_NVIC_SetPriority>
     HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
@@ -1708,9 +1708,9 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
  8000aa0:	4619      	mov	r1, r3
  8000aa2:	480b      	ldr	r0, [pc, #44]	; (8000ad0 <HAL_SPI_MspInit+0x118>)
  8000aa4:	f001 fc50 	bl	8002348 <HAL_GPIO_Init>
-    HAL_NVIC_SetPriority(SPI2_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(SPI2_IRQn, 1, 0);
  8000aa8:	2200      	movs	r2, #0
- 8000aaa:	2100      	movs	r1, #0
+ 8000aaa:	2101      	movs	r1, #1
  8000aac:	2024      	movs	r0, #36	; 0x24
  8000aae:	f001 fb56 	bl	800215e <HAL_NVIC_SetPriority>
     HAL_NVIC_EnableIRQ(SPI2_IRQn);
@@ -1858,9 +1858,9 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
  8000b86:	f003 0302 	and.w	r3, r3, #2
  8000b8a:	60bb      	str	r3, [r7, #8]
  8000b8c:	68bb      	ldr	r3, [r7, #8]
-    HAL_NVIC_SetPriority(TIM3_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM3_IRQn, 2, 0);
  8000b8e:	2200      	movs	r2, #0
- 8000b90:	2100      	movs	r1, #0
+ 8000b90:	2102      	movs	r1, #2
  8000b92:	201d      	movs	r0, #29
  8000b94:	f001 fae3 	bl	800215e <HAL_NVIC_SetPriority>
     HAL_NVIC_EnableIRQ(TIM3_IRQn);
@@ -2047,9 +2047,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
  8000cbc:	f001 fb44 	bl	8002348 <HAL_GPIO_Init>
 
     /* USART1 interrupt Init */
-    HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(USART1_IRQn, 2, 0);
  8000cc0:	2200      	movs	r2, #0
- 8000cc2:	2100      	movs	r1, #0
+ 8000cc2:	2102      	movs	r1, #2
  8000cc4:	2025      	movs	r0, #37	; 0x25
  8000cc6:	f001 fa4a 	bl	800215e <HAL_NVIC_SetPriority>
     HAL_NVIC_EnableIRQ(USART1_IRQn);
