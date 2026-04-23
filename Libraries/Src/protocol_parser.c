@@ -238,7 +238,7 @@ void fillDataField() {
 		read.last_page_num = 0;
 
 		// включение LED
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
 		W25_Read_Page(data_buf, read.last_page_num, 0, w25_info.PageSize);
 
 	} else { // выполняется чтение последующей страницы флеш-памяти
@@ -246,7 +246,7 @@ void fillDataField() {
 		// обновление номера считанной страницы
 		read.last_page_num++;
 		// включение LED
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
 		W25_Read_Page(data_buf, read.last_page_num, 0, w25_info.PageSize);
 	}
 
@@ -551,7 +551,7 @@ void parserFSM() {
 		case RESET_STATE:
 			if(safe_command_frame[2] == CMD_STATUS) {
 				if (reset_ready) {
-					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
 					fillResponseFrame(STATE_RESET, CMD_RESET);
 					setFSMProtocolState(CONNECTED_STATE);
 					reset_ready = 0;
@@ -571,7 +571,7 @@ void parserFSM() {
 
 			if(safe_command_frame[2] == CMD_STATUS) {
 				if (reset_ready) {
-					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
+					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
 
 					// восстановление предыдущего состояния
 					setFSMProtocolState(FSM_last_state);
@@ -631,7 +631,7 @@ void sensorInit() {
 	HAL_TIM_Base_Start_IT(&htim3); //start timer 250 Hz for ADC
 	HAL_ADC_Start_IT(&hadc1);
 	HAL_Delay(100);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET); //LED off
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); //LED off
 	HAL_Delay(10);
 
 	// инициализация SPI-соединения

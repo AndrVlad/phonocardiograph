@@ -54,6 +54,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 phonocardiograph.list \
 
+OBJCOPY_HEX += \
+phonocardiograph.hex \
+
 
 # All Target
 all: main-build
@@ -77,12 +80,17 @@ phonocardiograph.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS
 	@echo 'Finished building: $@'
 	@echo ' '
 
+phonocardiograph.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "phonocardiograph.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) default.size.stdout phonocardiograph.elf phonocardiograph.list phonocardiograph.map
+	-$(RM) default.size.stdout phonocardiograph.elf phonocardiograph.hex phonocardiograph.list phonocardiograph.map
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
