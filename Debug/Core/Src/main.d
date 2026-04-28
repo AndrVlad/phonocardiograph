@@ -27,9 +27,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Drivers/25Q/w25q_spi.h \
- C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/SPI_connection.h \
- C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/protocol_parser.h
+ C:/Users/Admin/Documents/GitHub/phonocardiograph/Drivers/25Q/w25q_spi.h \
+ C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/SPI_connection.h \
+ C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/protocol_parser.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -59,6 +59,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
-C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Drivers/25Q/w25q_spi.h:
-C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/SPI_connection.h:
-C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/protocol_parser.h:
+C:/Users/Admin/Documents/GitHub/phonocardiograph/Drivers/25Q/w25q_spi.h:
+C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/SPI_connection.h:
+C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/protocol_parser.h:
