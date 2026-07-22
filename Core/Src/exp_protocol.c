@@ -22,6 +22,7 @@ void parser_exp() {
 		break;
 	case 0xFF:
 		stop_measurement();
+		led_off();
 		break;
 	default:
 		break;
