@@ -31,6 +31,8 @@ void start_measurement() {
 	HAL_TIM_Base_Start_IT(&htim3); //start timer for ADC
 	HAL_ADC_PollForConversion(&hadc1, 100);
 
+	HAL_TIM_Base_Start_IT(&htim4);
+
 	// Запуск таймера времени измерения
 	HAL_TIM_Base_Start_IT(&htim1);
 
@@ -44,6 +46,7 @@ void stop_measurement() {
 	measurement_works = false;
 	HAL_TIM_Base_Stop(&htim1);
 	HAL_TIM_Base_Stop(&htim3);
+	HAL_TIM_Base_Stop(&htim4);
 	__HAL_TIM_SET_COUNTER(&htim3,0);
 	reset_meas_time();
 
@@ -59,5 +62,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         if (measurement_time >= MEASUREMENT_TIME_MAX_MS) {
         	measurement_time = 0;
         }
+    }
+    if (htim->Instance == TIM4) {
+    	led_switch();
+    	__HAL_TIM_SET_COUNTER(&htim4, 0);
     }
 }

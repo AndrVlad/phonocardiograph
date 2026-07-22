@@ -3,17 +3,12 @@
 #include "stm32f1xx_hal.h"
 #include <string.h>
 
-#define led_on() HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
-#define led_off() HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
-#define led_switch() HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_6);
-
 uint8_t uart1_rx_buf[2];
 uint8_t uart1_rx_safe_buf[2] = {0x0};
 uint8_t uart1_tx_buf[5] = {0x0};
 bool uart1_rx_complete;
 
 void parser_exp() {
-	led_switch();
 	uart1_rx_complete = false;
 
 	switch(uart1_rx_buf[0]) {
@@ -45,8 +40,6 @@ void uart_init() {
 }
 
 void send_data(uint16_t meas_result) {
-
-	led_switch();
 
 	uint32_t meas_time;
 	meas_time = get_measurement_time();

@@ -1,5 +1,5 @@
 exp_measurement.c:11:10:get_measurement_time	1
 exp_measurement.c:15:6:reset_meas_time	1
 exp_measurement.c:23:6:start_measurement	2
-exp_measurement.c:42:6:stop_measurement	1
-exp_measurement.c:53:6:HAL_TIM_PeriodElapsedCallback	3
+exp_measurement.c:44:6:stop_measurement	1
+exp_measurement.c:56:6:HAL_TIM_PeriodElapsedCallback	4
