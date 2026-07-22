@@ -1,5 +1,5 @@
 Libraries/Src/sensor_utils.o: ../Libraries/Src/sensor_utils.c \
- C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/sensor_utils.h \
+ C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/sensor_utils.h \
  ../Core/Inc/main.h ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -29,11 +29,11 @@ Libraries/Src/sensor_utils.o: ../Libraries/Src/sensor_utils.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/Common.h \
- C:/Users/Admin/Documents/GitHub/phonocardiograph/Drivers/25Q/w25q_spi.h \
- C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/protocol_parser.h \
- C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/SPI_Connection.h \
- C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/protocol_common.h
-C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/sensor_utils.h:
+ C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Drivers/25Q/w25q_spi.h \
+ C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/protocol_parser.h \
+ C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/SPI_Connection.h \
+ C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/protocol_common.h
+C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/sensor_utils.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -64,7 +64,7 @@ C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/sensor_utils.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Inc/Common.h:
-C:/Users/Admin/Documents/GitHub/phonocardiograph/Drivers/25Q/w25q_spi.h:
-C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/protocol_parser.h:
-C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/SPI_Connection.h:
-C:/Users/Admin/Documents/GitHub/phonocardiograph/Libraries/Inc/protocol_common.h:
+C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Drivers/25Q/w25q_spi.h:
+C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/protocol_parser.h:
+C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/SPI_Connection.h:
+C:/Users/vlado/STM32CubeIDE/workspace_1.12.0/phonocardiograph/Libraries/Inc/protocol_common.h:

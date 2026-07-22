@@ -59,6 +59,7 @@ volatile uint8_t i = 0;
 /* External variables --------------------------------------------------------*/
 extern ADC_HandleTypeDef hadc1;
 extern SPI_HandleTypeDef hspi2;
+extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim3;
 extern UART_HandleTypeDef huart1;
 /* USER CODE BEGIN EV */
@@ -211,22 +212,28 @@ void ADC1_2_IRQHandler(void)
 {
   /* USER CODE BEGIN ADC1_2_IRQn 0 */
 
-  ADC_data = HAL_ADC_GetValue(&hadc1);
-  if (need_save)
-  {
-	new_conv = 1; //set flag for new conversion
-  }
-
-  if (!need_selfcheck) {
-	  i = i % 10;
-	  ADC_data_safe[i] = ADC_data;
-	  i++;
-  }
+	ADC_data = HAL_ADC_GetValue(&hadc1);
+	  need_to_send = true;
+	  ADC_data_safe_1 = ADC_data;
   /* USER CODE END ADC1_2_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc1);
   /* USER CODE BEGIN ADC1_2_IRQn 1 */
 
   /* USER CODE END ADC1_2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM1 update interrupt.
+  */
+void TIM1_UP_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_UP_IRQn 0 */
+
+  /* USER CODE END TIM1_UP_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim1);
+  /* USER CODE BEGIN TIM1_UP_IRQn 1 */
+
+  /* USER CODE END TIM1_UP_IRQn 1 */
 }
 
 /**

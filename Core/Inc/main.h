@@ -64,7 +64,9 @@ extern volatile uint32_t page_ptr;
 extern bool write_cycle_closed;
 extern bool reach_end_of_flash;
 extern volatile uint16_t ADC_data_safe[10];
+extern uint16_t ADC_data_safe_1;
 extern bool need_selfcheck;
+extern bool need_to_send;
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
